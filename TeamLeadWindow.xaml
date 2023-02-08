@@ -1,0 +1,90 @@
+﻿<Window x:Class="sql_pract.TeamLeadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:sql_pract"
+        mc:Ignorable="d"
+        Title="TeamLeadWindow" Height="470" Width="721">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="25" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF7D0000" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <TextBox x:Name="textbox_" HorizontalAlignment="Left" Margin="173,124,0,0" VerticalAlignment="Top" Width="492" Height="272"/>
+        <Button x:Name="Add_btn" Content="Добавить" HorizontalAlignment="Left" Margin="41,124,0,0" VerticalAlignment="Top" Height="34" Width="109" Style="{DynamicResource ButtonStyle1}" Click="Add_btn_Click"/>
+        <Button x:Name="PrintALL_btn" Content="Выданные задачи" HorizontalAlignment="Left" Margin="46,48,0,0" VerticalAlignment="Top" Height="36" Width="133" Style="{DynamicResource ButtonStyle1}" Click="PrintALL_btn_Click"/>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="Back_btn" Content="Назад" HorizontalAlignment="Left" Margin="46,351,0,0" VerticalAlignment="Top" Height="36" Width="102" Click="Back_btn_Click"/>
+        <Button x:Name="DevTask_btn" Content="Задачи на выполнении" HorizontalAlignment="Left" Margin="210,48,0,0" VerticalAlignment="Top" Height="36" Width="136" Style="{DynamicResource ButtonStyle1}" Click="DevTask_btn_Click"/>
+        <Button x:Name="TestTask_btn" Content="Задачи на тестировании" HorizontalAlignment="Left" Margin="378,48,0,0" VerticalAlignment="Top" Height="36" Width="140" Style="{DynamicResource ButtonStyle1}" Click="TestTask_btn_Click"/>
+        <Button x:Name="ComplitedTask_btn" Content="Выполненные задачи" HorizontalAlignment="Left" Margin="543,48,0,0" VerticalAlignment="Top" Height="36" Width="122" Style="{DynamicResource ButtonStyle1}" Click="ComplitedTask_btn_Click"/>
+        <Button x:Name="PrintALL_btn_Copy" Content="Меню Show" HorizontalAlignment="Left" Margin="41,173,0,0" VerticalAlignment="Top" Height="36" Width="107" Style="{DynamicResource ButtonStyle1}" Click="PrintALL_btn_Copy_Click"/>
+        <ListBox x:Name="list_view" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="173,124,0,0" HorizontalAlignment="Left" Width="492" Height="272" VerticalAlignment="Top" BorderBrush="#00ABADB3"/>
+        <Label x:Name="label_adminName" HorizontalAlignment="Left" Margin="210,10,0,0" VerticalAlignment="Top" Width="346" Foreground="White"/>
+        <Label x:Name="label_info" HorizontalAlignment="Left" Margin="173,101,0,0" VerticalAlignment="Top" Width="492" Height="23" Background="White"/>
+        <Button x:Name="delete_btn" Visibility="Hidden" Content="Удалить таск" HorizontalAlignment="Left" Margin="41,124,0,0" VerticalAlignment="Top" Height="34" Width="109" Style="{DynamicResource ButtonStyle1}" Click="delete_btn_Click"/>
+        <Button x:Name="feedDev_btn" Visibility="Hidden" Content="Покормить разраба" HorizontalAlignment="Left" Margin="41,173,0,0" VerticalAlignment="Top" Height="36" Width="127" Style="{DynamicResource ButtonStyle1}" Click="feedDev_btn_Click" />
+        <ListBox x:Name="list_tmp" Visibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="173,124,0,0" HorizontalAlignment="Left" Width="492" Height="272" VerticalAlignment="Top" BorderBrush="#00ABADB3"/>
+        <Button x:Name="accept_btn_add" Content="Добавить" Visibility="Hidden" HorizontalAlignment="Left" Margin="196,401,0,0" VerticalAlignment="Top" Height="34" Width="447" Style="{DynamicResource ButtonStyle1}" Background="#FFB7FF00" Click="accept_btn_add_Click"/>
+
+    </Grid>
+</Window>
